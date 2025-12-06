@@ -16,6 +16,9 @@
         <option value="3">chottrogram</option>
         <option value="4">Borishal</option>
     </select><br>
+    <select name="" id="district">
+        <option value="">Select one</option>
+    </select> <br>
     <input type="submit">
 </form>
    
@@ -24,7 +27,8 @@
         $("#division").change(function(){
             let divId = $("#division").val();
             $.post("district_list.php",{id:divId}, function(data){
-                alert(data);
+                // alert(data);
+                $("#district").html(data);
             })
         })
     
