@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <title>Validate empty fields</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#check").click(validate);
+        
+        function validate() {
+          var dataValid = true;
+          $("#info").html("");
+          $(".required").each(function () {
+            var cur = $(this);
+            cur.next("span").remove();
+            if ($.trim(cur.val()) == "") {
+              cur.after('<span class="error"> Mandatory field</span>');
+              dataValid = false;
+            }
+          });
+          if (dataValid) {
+            $("#info").html("Validation OK");
+          }
+        }
+      });
+      $(document).ready(function() {
+  $(".delete").hide();
+  //when the Add Field button is clicked
+  $("#add").click(function(e) {
+    $(".delete").fadeIn("1500");
+    //Append a new row of code to the "#items" div
+    $("#items").append(
+      '<div class="next-referral col-4"><input id="textinput" name="textinput" type="text" placeholder="Enter name of referral" class="form-control input-md"></div>'
+    );
+  });
+  $("body").on("click", ".delete", function(e) {
+    $(".next-referral").last().remove();
+  });
+});
+
+    </script>
+    <style type="text/css">
+      body {
+        font-family: "Trebuchet MS", verdana;
+        width: 450px;
+      }
+      .error {
+        color: red;
+      }
+      #info {
+        color: #008000;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <fieldset>
+        <legend><strong>Personal</strong></legend>
+        <table>
+          <tbody>
+            <tr>
+              <td>Name:*</td>
+              <td><input type="text" class="required" /></td>
+            </tr>
+            <tr>
+              <td>Address:*</td>
+              <td><input type="text" class="required" /></td>
+            </tr>
+            <tr>
+              <td>City:</td>
+              <td><input type="text" /></td>
+            </tr>
+            <tr>
+              <td>Country:*</td>
+              <td><input type="text" class="required" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+      <br />
+      <span id="info"></span>
+      <br />
+      <input type="button" value="Check" id="check" />
+    </form>
+    <form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Referral form | Add below:</legend>
+
+<!-- Text input-->
+<div id="items" class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Name</label>
+<div class="col-md-4 margin-bottom">
+  <input id="textinput" name="textinput" type="text" placeholder="Enter name of referral" class="form-control input-md">
+
+</div>
+</div>
+
+</fieldset>
+</form>
+
+
+  <button id="add" class="btn add-more button-yellow uppercase" type="button">+ Add another referral</button> <button class="delete btn button-white uppercase">- Remove referral</button>
+  </body>
+</html>
